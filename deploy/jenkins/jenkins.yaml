@@ -1,0 +1,34 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: jenkins
+  namespace: smol-devtools
+spec:
+  interval: 5m
+  url: https://charts.jenkins.io
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: jenkins
+  namespace: smol-devtools
+spec:
+  releaseName: jenkins
+  targetNamespace: smol-devtools
+  chart:
+    spec:
+      chart: jenkins
+      sourceRef:
+        kind: HelmRepository
+        name: jenkins
+  values:
+    controller:
+      ingress:
+        enabled: true
+        paths: []
+        apiVersion: networking.k8s.io/v1
+        hostName: jenkins.k8s.lan
+  interval: 1m
+  install:
+    remediation:
+      retries: 3
