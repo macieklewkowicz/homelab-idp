@@ -22,6 +22,10 @@ spec:
         kind: HelmRepository
         name: gitea
   values:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
     memcached:
       enabled: false
     postgresql:
