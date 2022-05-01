@@ -23,24 +23,24 @@ spec:
         name: gitea
   values:
     gitea:
+      config:
+        database:
+          DB_TYPE: postgres
       additionalConfigFromEnvs:
-      - name: ENV_TO_INI__DB_TYPE
-        value: postgres
+      - name: ENV_TO_INI__SCHEMA
+        value: gitea
       - name: ENV_TO_INI__HOST
         valueFrom:
           secretKeyRef:
             name: postgres-gitea-role-secret
-            key:
+            key: endpoint
       - name: ENV_TO_INI__NAME
-        valueFrom:
-          secretKeyRef:
-            name: postgres-gitea-role-secret
-            key:
+        value: gitea
       - name: ENV_TO_INI__USER
         valueFrom:
           secretKeyRef:
             name: postgres-gitea-role-secret
-            key:
+            key: username
       - name: ENV_TO_INI__DATABASE__PASSWD
         valueFrom:
           secretKeyRef:
