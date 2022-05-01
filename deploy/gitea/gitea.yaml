@@ -22,6 +22,30 @@ spec:
         kind: HelmRepository
         name: gitea
   values:
+    gitea:
+      additionalConfigFromEnvs:
+      - name: ENV_TO_INI__DB_TYPE
+        value: postgres
+      - name: ENV_TO_INI__HOST
+        valueFrom:
+          secretKeyRef:
+            name: postgres-gitea-role-secret
+            key:
+      - name: ENV_TO_INI__NAME
+        valueFrom:
+          secretKeyRef:
+            name: postgres-gitea-role-secret
+            key:
+      - name: ENV_TO_INI__USER
+        valueFrom:
+          secretKeyRef:
+            name: postgres-gitea-role-secret
+            key:
+      - name: ENV_TO_INI__DATABASE__PASSWD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-gitea-role-secret
+            key: password
     resources:
       requests:
         cpu: 100m
