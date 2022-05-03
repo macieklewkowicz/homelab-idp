@@ -27,16 +27,16 @@ spec:
         database:
           DB_TYPE: postgres
       additionalConfigFromEnvs:
-      - name: ENV_TO_INI__SCHEMA
+      - name: ENV_TO_INI__DATABASE__SCHEMA
         value: gitea
-      - name: ENV_TO_INI__HOST
+      - name: ENV_TO_INI__DATABASE__HOST
         valueFrom:
           secretKeyRef:
             name: postgres-gitea-role-secret
             key: endpoint
-      - name: ENV_TO_INI__NAME
+      - name: ENV_TO_INI__DATABASE__NAME
         value: gitea
-      - name: ENV_TO_INI__USER
+      - name: ENV_TO_INI__DATABASE__USER
         valueFrom:
           secretKeyRef:
             name: postgres-gitea-role-secret
