@@ -27,8 +27,6 @@ spec:
         database:
           DB_TYPE: postgres
       additionalConfigFromEnvs:
-      - name: ENV_TO_INI__DATABASE__SCHEMA
-        value: gitea
       - name: ENV_TO_INI__DATABASE__HOST
         valueFrom:
           secretKeyRef:
