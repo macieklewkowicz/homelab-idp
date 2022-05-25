@@ -1,0 +1,33 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: renovate
+  namespace: smol-devtools
+spec:
+  interval: 5m
+  url: https://docs.renovatebot.com/helm-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: renovate
+  namespace: smol-devtools
+spec:
+  releaseName: renovate
+  targetNamespace: smol-devtools
+  chart:
+    spec:
+      chart: renovate
+      sourceRef:
+        kind: HelmRepository
+        name: renovate
+  values:
+    cronjob:
+      schedule: '@hourly'
+    existingSecret: renovate-env
+    renovate:
+      config: '{}'
+  interval: 1m
+  install:
+    remediation:
+      retries: 3

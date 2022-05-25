@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: renovate
+  namespace: smol-devtools
+spec:
+  interval: 1h0m0s
+  path: ./deploy/renovate
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: smol-devtools
+  validation: client
