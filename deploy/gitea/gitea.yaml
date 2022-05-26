@@ -26,6 +26,8 @@ spec:
       config:
         database:
           DB_TYPE: postgres
+        webhook:
+          ALLOWED_HOST_LIST: '*.k8s.lan, *.cluster.local'
       additionalConfigFromEnvs:
       - name: ENV_TO_INI__DATABASE__HOST
         valueFrom:
