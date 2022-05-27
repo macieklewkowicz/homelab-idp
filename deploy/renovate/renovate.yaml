@@ -27,6 +27,13 @@ spec:
     existingSecret: renovate-env
     renovate:
       config: '{}'
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 250m
+        memory: 256Mi
   interval: 1m
   install:
     remediation:
