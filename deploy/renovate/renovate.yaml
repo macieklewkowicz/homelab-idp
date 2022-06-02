@@ -23,6 +23,7 @@ spec:
         name: renovate
   values:
     cronjob:
+      concurrencyPolicy: 'Forbid'
       schedule: '@hourly'
     existingSecret: renovate-env
     renovate:
