@@ -27,7 +27,7 @@ spec:
       schedule: '@hourly'
     existingSecret: renovate-env
     renovate:
-      config: '{}'
+      config: '{ "rebaseWhen": "behind-base-branch" }'
     resources:
       requests:
         cpu: 250m
