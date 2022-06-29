@@ -24,7 +24,7 @@ spec:
   values:
     cronjob:
       concurrencyPolicy: 'Forbid'
-      schedule: '@hourly'
+      schedule: '@daily'
     existingSecret: renovate-env
     renovate:
       config: '{ "rebaseWhen": "behind-base-branch" }'
