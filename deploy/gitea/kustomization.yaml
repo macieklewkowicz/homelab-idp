@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - database-connection-secret.yaml
 - gitea.yaml
+- pvc.yaml
