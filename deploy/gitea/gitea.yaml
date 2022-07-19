@@ -23,6 +23,9 @@ spec:
         name: gitea
   values:
     gitea:
+      persistence:
+        enable: true
+        existingClaim: gitea
       config:
         database:
           DB_TYPE: postgres
