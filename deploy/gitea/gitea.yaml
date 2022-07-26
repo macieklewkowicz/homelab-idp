@@ -53,9 +53,6 @@ spec:
       requests:
         cpu: 100m
         memory: 256Mi
-    tolerations:
-      - key: "node-role.kubernetes.io/storage"
-        operator: Exists
     memcached:
       enabled: true
     postgresql:
