@@ -30,31 +30,33 @@ spec:
         database:
           DB_TYPE: postgres
         webhook:
-          ALLOWED_HOST_LIST: '*.k8s.lan, *.cluster.local'
+          ALLOWED_HOST_LIST: "*.k8s.lan, *.cluster.local"
       additionalConfigFromEnvs:
-      - name: ENV_TO_INI__DATABASE__HOST
-        valueFrom:
-          secretKeyRef:
-            name: postgres-gitea-role-secret
-            key: endpoint
-      - name: ENV_TO_INI__DATABASE__NAME
-        value: gitea
-      - name: ENV_TO_INI__DATABASE__USER
-        valueFrom:
-          secretKeyRef:
-            name: postgres-gitea-role-secret
-            key: username
-      - name: ENV_TO_INI__DATABASE__PASSWD
-        valueFrom:
-          secretKeyRef:
-            name: postgres-gitea-role-secret
-            key: password
+        - name: ENV_TO_INI__DATABASE__HOST
+          valueFrom:
+            secretKeyRef:
+              name: postgres-gitea-role-secret
+              key: endpoint
+        - name: ENV_TO_INI__DATABASE__NAME
+          value: gitea
+        - name: ENV_TO_INI__DATABASE__USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-gitea-role-secret
+              key: username
+        - name: ENV_TO_INI__DATABASE__PASSWD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-gitea-role-secret
+              key: password
+    priorityClassName: smol-devtools
     resources:
       requests:
         cpu: 100m
         memory: 256Mi
     memcached:
       enabled: true
+      priorityClassName: smol-devtools
     postgresql:
       enabled: false
     mysql:
