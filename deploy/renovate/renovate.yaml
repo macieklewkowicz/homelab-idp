@@ -2,7 +2,6 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: renovate
-  namespace: smol-devtools
 spec:
   interval: 5m
   url: https://docs.renovatebot.com/helm-charts
@@ -11,7 +10,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: renovate
-  namespace: smol-devtools
 spec:
   releaseName: renovate
   targetNamespace: smol-devtools
@@ -21,20 +19,35 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: renovate
+      version: 37.415.0
   values:
     cronjob:
       concurrencyPolicy: 'Forbid'
       schedule: '@hourly'
     existingSecret: renovate-env
     renovate:
-      config: '{ "rebaseWhen": "behind-base-branch" }'
+      config: |
+        {
+          "extends": ["config:best-practices"],
+          "rebaseWhen": "behind-base-branch",
+          "separateMajorMinor": true,
+          "separateMinorPatch": true,
+          "separateMultipleMajor": true,
+          "separateMultipleMinor": true,
+          "autoApprove": true,
+          "prNotPendingHours": 1,
+          "prConcurrentLimit": 5,
+          "automerge": true
+        }
     resources:
       requests:
         cpu: 250m
-        memory: 512Mi
+        memory: 2Gi
+        ephemeral-storage: 2Gi
       limits:
         cpu: 250m
-        memory: 1Gi
+        memory: 2Gi
+        ephemeral-storage: 2Gi
   interval: 1m
   install:
     remediation:
