@@ -23,6 +23,10 @@ spec:
         name: jenkins
   values:
     controller:
+      image:
+        registry: harbor.k8s.lan
+        repository: smol/jenkins
+        tag: lts
       ingress:
         enabled: true
         paths: []
