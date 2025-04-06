@@ -22,8 +22,8 @@ spec:
       version: 37.415.0
   values:
     cronjob:
-      concurrencyPolicy: 'Forbid'
-      schedule: '@hourly'
+      concurrencyPolicy: "Forbid"
+      schedule: "@hourly"
     existingSecret: renovate-env
     renovate:
       config: |
@@ -34,7 +34,7 @@ spec:
           "separateMinorPatch": true,
           "separateMultipleMajor": true,
           "separateMultipleMinor": true,
-          "autoApprove": true,
+          "autoApprove": false,
           "prNotPendingHours": 1,
           "prConcurrentLimit": 5,
           "automerge": true
@@ -42,10 +42,10 @@ spec:
     resources:
       requests:
         cpu: 250m
-        memory: 2Gi
-        ephemeral-storage: 2Gi
+        memory: 1Gi
+        ephemeral-storage: 1Gi
       limits:
-        cpu: 250m
+        cpu: 500m
         memory: 2Gi
         ephemeral-storage: 2Gi
   interval: 1m
